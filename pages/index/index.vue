@@ -1,9 +1,13 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-		</view>
+	<view class="home">
+		<swiper indicator-dots circular 
+		autoplay="true" 
+		interval="3000" 
+		duration="500">
+			<swiper-item v-for="item in swipers" :key="item.id">
+				<image :src="item.img"></image>
+			</swiper-item>
+		</swiper>
 	</view>
 </template>
 
@@ -11,42 +15,33 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				swipers: []
 			}
 		},
 		onLoad() {
-
+			this.getSwipers()
 		},
 		methods: {
-
+			// 获取轮播图的数据
+			async getSwipers () {
+				const res = await this.$myRuquest({
+					url: '/api/getlunbo'
+				})
+				this.swipers = res.data.message
+			}
 		}
 	}
 </script>
 
-<style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
+<style lang="scss">
+	.home{
+		swiper{
+			width: 750rpx;
+			height: 380rpx;
+			image{
+				height: 100%;
+				width: 100%;
+			}
+		}
 	}
 </style>
