@@ -48,6 +48,12 @@
 				"navigationBarTitleText": "商品详情页"  //导航名字
 			}
 		}
+		,{
+		    "path" : "pages/news-detail/news-detail",
+		    "style" : {
+				"navigationBarTitleText": "咨询详情页"  //导航名字
+			}
+		}
     ],
 		"globalStyle": {
 			"navigationBarTextStyle": "white", //导航字体颜色
