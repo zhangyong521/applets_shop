@@ -24,6 +24,12 @@
 				})
 				this.goods = [...this.goods,...res.data.message]
 				callBack && callBack()
+			},
+			// 导航到商品详情页
+			goGoodsDetail (id) {
+				uni.navigateTo({
+					url: '/pages/goods-detail/goods-detail?id='+id
+				})
 			}
 		},
 		onLoad () {

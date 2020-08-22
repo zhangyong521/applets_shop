@@ -42,6 +42,12 @@
             "path" : "pages/videos/videos",
             "style" : {}
         }
+		,{
+		    "path" : "pages/goods-detail/goods-detail",
+		    "style" : {
+				"navigationBarTitleText": "商品详情页"  //导航名字
+			}
+		}
     ],
 		"globalStyle": {
 			"navigationBarTextStyle": "white", //导航字体颜色

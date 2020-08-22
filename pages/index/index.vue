@@ -15,7 +15,7 @@
 		<!-- 推荐商品 -->
 		<view class="hot_goods">
 			<view class="tit">推荐商品</view>
-			<goods-list :goods="goods"></goods-list>
+			<goods-list @goodsItemClick="goGoodsDetail" :goods="goods"></goods-list>
 		</view>
 	</view>
 </template>
@@ -29,25 +29,25 @@
 				goods: [],
 				navs: [
 					{
-							icon: 'iconfont icon-shouye',
-							title: '我的超市',
-							path: '/pages/goods/goods'
-						},
-						{
-							icon: 'iconfont icon-tuangou',
-							title: '联系我们',
-							path: '/pages/contact/contact'
-						},
-						{
-							icon: 'iconfont icon-mendianguanli',
-							title: '社区图片',
-							path: '/pages/pics/pics'
-						},
-						{
-							icon: 'iconfont icon-daishouhuo',
-							title: '学习视频',
-							path: '/pages/videos/videos'
-						}
+						icon: 'iconfont icon-shouye',
+						title: '我的超市',
+						path: '/pages/goods/goods'
+					},
+					{
+						icon: 'iconfont icon-tuangou',
+						title: '联系我们',
+						path: '/pages/contact/contact'
+					},
+					{
+						icon: 'iconfont icon-mendianguanli',
+						title: '社区图片',
+						path: '/pages/pics/pics'
+					},
+					{
+						icon: 'iconfont icon-daishouhuo',
+						title: '学习视频',
+						path: '/pages/videos/videos'
+					}
 				]
 			}
 		},
@@ -75,6 +75,12 @@
 			navItemClick (url) {
 				uni.navigateTo({
 					url
+				})
+			},
+			// 导航到商品详情页
+			goGoodsDetail(id) {
+				uni.navigateTo({
+					url: '/pages/goods-detail/goods-detail?id='+id
 				})
 			}
 		}

@@ -110,4 +110,10 @@
 	.icon-shouhou:before {
 	  content: "\e61c";
 	}
+	
+	/**商品详情页图片全局配置*/
+	.gomeImgLoad {
+		width: 750rpx;
+		height: auto;
+	}
 </style>

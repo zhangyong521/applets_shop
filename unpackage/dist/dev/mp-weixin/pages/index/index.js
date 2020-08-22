@@ -100,7 +100,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
+var components = {
+  goodsList: function() {
+    return __webpack_require__.e(/*! import() | components/goods-list/goods-list */ "components/goods-list/goods-list").then(__webpack_require__.bind(null, /*! @/components/goods-list/goods-list.vue */ 75))
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -136,33 +140,35 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var goodsList = function goodsList() {__webpack_require__.e(/*! require.ensure | components/goods-list/goods-list */ "components/goods-list/goods-list").then((function () {return resolve(__webpack_require__(/*! ../../components/goods-list/goods-list.vue */ 75));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   data: function data() {
     return {
       swipers: [],
+      goods: [],
       navs: [
       {
         icon: 'iconfont icon-shouye',
@@ -189,7 +195,9 @@ var _default =
   },
   onLoad: function onLoad() {
     this.getSwipers();
+    this.getHotGoods();
   },
+  components: { "goods-list": goodsList }, //注册公共组件
   methods: {
     // 获取轮播图的数据
     getSwipers: function getSwipers() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
@@ -198,11 +206,23 @@ var _default =
 
                 _this.swipers = res.data.message;case 4:case "end":return _context.stop();}}}, _callee);}))();
     },
+    // 获取热门商品列表数据
+    getHotGoods: function getHotGoods() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _this2.$myRuquest({
+                    url: '/api/getgoods?pageindex=1' }));case 2:res = _context2.sent;
 
+                _this2.goods = res.data.message;case 4:case "end":return _context2.stop();}}}, _callee2);}))();
+    },
     // 导航点击的处理函数
     navItemClick: function navItemClick(url) {
       uni.navigateTo({
         url: url });
+
+    },
+    // 导航到商品详情页
+    goGoodsDetail: function goGoodsDetail(id) {
+      uni.navigateTo({
+        url: '/pages/goods-detail/goods-detail?id=' + id });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

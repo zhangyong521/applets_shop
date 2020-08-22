@@ -7,7 +7,8 @@
     "pages/goods/goods",
     "pages/contact/contact",
     "pages/pics/pics",
-    "pages/videos/videos"
+    "pages/videos/videos",
+    "pages/goods-detail/goods-detail"
   ],
   "subPackages": [],
   "window": {
@@ -45,5 +46,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap23.json"
 }
