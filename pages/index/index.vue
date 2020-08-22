@@ -1,14 +1,10 @@
 <template>
 	<view class="home">
-		<swiper indicator-dots circular 
-		autoplay="true" 
-		interval="3000" 
-		duration="500">
+		<swiper indicator-dots circular>
 			<swiper-item v-for="item in swipers" :key="item.id">
 				<image :src="item.img"></image>
 			</swiper-item>
 		</swiper>
-		
 		<!-- 导航区域 -->
 		<view class="nav">
 			<view class="nav_item" v-for="(item,index) in navs" :key="index" @click="navItemClick(item.path)">
@@ -16,42 +12,50 @@
 				<text>{{item.title}}</text>
 			</view>
 		</view>
-		
+		<!-- 推荐商品 -->
+		<view class="hot_goods">
+			<view class="tit">推荐商品</view>
+			<goods-list :goods="goods"></goods-list>
+		</view>
 	</view>
 </template>
 
 <script>
+	import goodsList from '../../components/goods-list/goods-list.vue'
 	export default {
 		data() {
 			return {
 				swipers: [],
+				goods: [],
 				navs: [
 					{
-						icon: 'iconfont icon-shouye',
-						title: '我的超市',
-						path: '/pages/goods/goods'
-					},
-					{
-						icon: 'iconfont icon-tuangou',
-						title: '联系我们',
-						path: '/pages/contact/contact'
-					},
-					{
-						icon: 'iconfont icon-mendianguanli',
-						title: '社区图片',
-						path: '/pages/pics/pics'
-					},
-					{
-						icon: 'iconfont icon-daishouhuo',
-						title: '学习视频',
-						path: '/pages/videos/videos'
-					}
+							icon: 'iconfont icon-shouye',
+							title: '我的超市',
+							path: '/pages/goods/goods'
+						},
+						{
+							icon: 'iconfont icon-tuangou',
+							title: '联系我们',
+							path: '/pages/contact/contact'
+						},
+						{
+							icon: 'iconfont icon-mendianguanli',
+							title: '社区图片',
+							path: '/pages/pics/pics'
+						},
+						{
+							icon: 'iconfont icon-daishouhuo',
+							title: '学习视频',
+							path: '/pages/videos/videos'
+						}
 				]
 			}
 		},
 		onLoad() {
 			this.getSwipers()
+			this.getHotGoods()
 		},
+		components: {"goods-list":goodsList}, //注册公共组件
 		methods: {
 			// 获取轮播图的数据
 			async getSwipers () {
@@ -60,14 +64,19 @@
 				})
 				this.swipers = res.data.message
 			},
-			
+			// 获取热门商品列表数据
+			async getHotGoods () {
+				const res = await this.$myRuquest({
+					url: '/api/getgoods?pageindex=1'
+				})
+				this.goods = res.data.message
+			},
 			// 导航点击的处理函数
 			navItemClick (url) {
 				uni.navigateTo({
 					url
 				})
 			}
-			
 		}
 	}
 </script>
@@ -98,11 +107,25 @@
 					font-size: 50rpx;
 				}
 				.iconfont {
-				   font-size: 70rpx;
+					font-size: 70rpx;
 				}
 				text{
-					font-size: 28rpx;
+					font-size: 30rpx;
 				}
+			}
+		}
+		.hot_goods {
+			background: #eee;
+			overflow: hidden;
+			margin-top: 10px;
+			.tit{
+				height: 50px;
+				line-height: 50px;
+				color: $shop-color;
+				text-align: center;
+				letter-spacing: 20px;
+				background: #fff;
+				margin: 7rpx 0;
 			}
 		}
 	}
