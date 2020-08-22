@@ -182,7 +182,7 @@ __webpack_require__.r(__webpack_exports__);
 
       {
         icon: 'iconfont icon-mendianguanli',
-        title: '社区图片',
+        title: '分类图片',
         path: '/pages/pics/pics' },
 
       {

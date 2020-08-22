@@ -40,7 +40,7 @@
 					},
 					{
 						icon: 'iconfont icon-mendianguanli',
-						title: '社区图片',
+						title: '分类图片',
 						path: '/pages/pics/pics'
 					},
 					{
